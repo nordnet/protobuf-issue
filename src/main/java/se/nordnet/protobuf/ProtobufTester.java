@@ -17,7 +17,7 @@ public class ProtobufTester {
             CountDownLatch doneLatch = new CountDownLatch(2);
 
             // We've observed concurrent initialization, in different threads, of Span & PubsubMessage protobuf
-            // Hence these in the example
+            // Hence these classes in the example
             e.submit(() -> runAfterLatch(latch, doneLatch, Span::getDescriptor));
             e.submit(() -> runAfterLatch(latch, doneLatch, PubsubMessage::getDescriptor));
             latch.countDown();
