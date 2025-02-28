@@ -11,16 +11,19 @@ public class ProtobufTester {
 
     public static void main(String[] args) throws InterruptedException {
         System.out.println("STARTING");
-        CountDownLatch latch;
-        CountDownLatch doneLatch;
+
         try (var e = Executors.newFixedThreadPool(2)) {
-            latch = new CountDownLatch(1);
-            doneLatch = new CountDownLatch(2);
+            CountDownLatch latch = new CountDownLatch(1);
+            CountDownLatch doneLatch = new CountDownLatch(2);
+
+            // We've observed concurrent initialization, in different threads, of Span & PubsubMessage protobuf
+            // Hence these in the example
             e.submit(() -> runAfterLatch(latch, doneLatch, Span::getDescriptor));
             e.submit(() -> runAfterLatch(latch, doneLatch, PubsubMessage::getDescriptor));
             latch.countDown();
             doneLatch.await();
         }
+
         System.out.println("DONE");
     }
 
