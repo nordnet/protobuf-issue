@@ -25,7 +25,6 @@
                 <scope>import</scope>
             </dependency>
 
-
             <!-- Downgrading to protobuf3 seems to fix the problem -->
 <!--            <dependency>-->
 <!--                <groupId>com.google.cloud</groupId>-->
@@ -41,15 +40,16 @@
     <dependencies>
 
         <!-- Here it is possible to select low-level dependencies, we've opted to use deps from the original issue  -->
+        <!-- 2025-03-04: Updated to 5.11.1 to verify that the issue remains in the latest version -->
         <dependency>
             <groupId>com.google.cloud</groupId>
             <artifactId>spring-cloud-gcp-starter-pubsub</artifactId>
-            <version>5.10.0</version>
+            <version>5.11.1</version>
         </dependency>
         <dependency>
             <groupId>com.google.cloud</groupId>
             <artifactId>spring-cloud-gcp-starter-trace</artifactId>
-            <version>5.10.0</version>
+            <version>5.11.1</version>
         </dependency>
     </dependencies>
 
